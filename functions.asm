@@ -4,7 +4,6 @@ global _func, func		; '_func' for compatiility with NASM for Windows
 _func:
 func:
 	; subroutine prologue
-	sub rsp, 8     		; room for a 64-bit local var: rbx
 	push rbx        	; save callee-save register
 	mov	rax, rdi		; save address of *a (param 1) to rax
 
@@ -25,5 +24,4 @@ exit_loop:
 	; subroutine epilogue
 	xor	rax, rax		; rax = 0
 	pop rbx				; bring back the caller's value of rbx from the stack
-	add rsp, 8			; deallocate local var: rbx
 	ret
